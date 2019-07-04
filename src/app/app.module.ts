@@ -19,7 +19,7 @@ import { RoomTypeService } from './rooms/room-types/roomType.service';
     AppComponent,
     RoomsComponent,
     RoomListComponent,
-    RoomTypesComponent,
+    RoomTypesComponent ,
     RoomTypeListComponent,
     RoomTypeRowComponent
   ],
