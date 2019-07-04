@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Room Type</th>
+        <th scope="col">Price</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr app-room-type-row *ngFor="let rT of roomTypes; let i=index"
+      [selectedRoomType]="rT" [id]="i"
+      >
+               
+      </tr>      
+    </tbody>
+  </table>
