@@ -3,14 +3,14 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Room Type</th>
-        <th scope="col">Price</th>        
+        <th scope="col">Price</th>  
+        <th></th>      
+        <th></th>      
       </tr>
     </thead>
     <tbody>
       <tr app-room-type-row *ngFor="let rT of roomTypes; let i=index"
-      [selectedRoomType]="rT" [id]="i"
-      >
-               
-      </tr>      
+      [selectedRoomType]="rT"
+      ></tr>      
     </tbody>
   </table>

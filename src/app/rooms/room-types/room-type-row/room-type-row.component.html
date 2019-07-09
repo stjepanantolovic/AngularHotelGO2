@@ -1,3 +1,6 @@
-<td>{{id+1}}</td>
+<td>{{selectedRoomType.id}}</td>
 <td>{{selectedRoomType.rTName}}</td>
 <td>{{selectedRoomType.price}}</td>
+<td><button class="btn btn-primary" [routerLink]="[selectedRoomType.id, selectedRoomType.rTName, selectedRoomType.price]">Edit</button></td>
+<td><button class="btn btn-primary" (click)="onLoadRoomType(selectedRoomType.id)">Edit Programatically</button></td>
+<td><button class="btn btn-danger" (click)="onDelete()">Delete</button></td>

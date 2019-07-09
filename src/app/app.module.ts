@@ -13,15 +13,31 @@ import { RoomTypesComponent } from './rooms/room-types/room-types.component';
 import { RoomTypeListComponent } from './rooms/room-types/room-type-list/room-type-list.component';
 import { RoomTypeRowComponent } from './rooms/room-types/room-type-row/room-type-row.component';
 import { RoomTypeService } from './rooms/room-types/roomType.service';
+import { HeaderComponent } from './header/header.component';
+import { RoomRowComponent } from './rooms/room-row/room-row.component';
+import { HomeComponent } from './home/home.component';
+import { RoomComponent } from './rooms/room/room.component';
+import { RoomTypeComponent } from './rooms/room-types/room-type/room-type.component';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomsComponent,
     RoomListComponent,
-    RoomTypesComponent ,
+    RoomTypesComponent,
     RoomTypeListComponent,
-    RoomTypeRowComponent
+    RoomTypeRowComponent,
+    HeaderComponent,
+    RoomRowComponent,
+    HomeComponent,
+    RoomComponent,
+    RoomTypeComponent
+    
+    
+   
   ],
   imports: [
     BrowserModule,
@@ -32,7 +48,10 @@ import { RoomTypeService } from './rooms/room-types/roomType.service';
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AppRoutingModule,
+    FormsModule
+    
   ],
   providers: [RoomTypeService],
   bootstrap: [AppComponent]

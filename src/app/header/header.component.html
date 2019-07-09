@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Hoteli</a>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="/rooms">Sobe </a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="/roomTypes">Tipovi Soba</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" href="#">Gosti</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" role="button">Manage<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Save Data</a></li>
+          <li><a href="#">Fetch Data</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

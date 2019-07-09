@@ -1,5 +1,18 @@
-
-
-
-
-  <p> jen ..dvaiz liste...</p>
+<div class="col-sm-7">
+  <table class="table table-hover">
+      <thead>
+          <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Room Number</th>
+              <th scope="col">RoomType</th>
+              <th scope="col">Room Price</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr app-room-row *ngFor="let room of rooms; let i=index" [selectedRoom]="room" [id]="room.id">
+          </tr>
+      </tbody>
+  </table>
+</div>

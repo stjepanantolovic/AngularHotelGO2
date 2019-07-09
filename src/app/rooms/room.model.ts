@@ -1,3 +1,5 @@
+import { RoomType } from './room-types/roomType.model';
+
 export class Room{
-    constructor(public roomNumber:string, public roomType:string){}
+    constructor(public id: number, public roomNumber:number, public roomType:RoomType){}
 }
