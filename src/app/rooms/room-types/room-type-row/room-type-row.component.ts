@@ -18,7 +18,7 @@ export class RoomTypeRowComponent implements OnInit {
 
 
   onLoadRoomType(id:number){
-this.router.navigate(['/roomTypes',this.selectedRoomType.id, this.selectedRoomType.rTName, this.selectedRoomType.price]);
+this.router.navigate(['/roomTypes', this.selectedRoomType.id]);
   }
 
   onDelete(){

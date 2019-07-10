@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { RoomComponent } from './rooms/room/room.component';
 import { RoomTypeComponent } from './rooms/room-types/room-type/room-type.component';
 import { FormsModule } from '@angular/forms';
+import { RoomTypeByIDComponent } from './rooms/room-types/room-type-by-id/room-type-by-id.component';
 
 
 
@@ -34,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     RoomRowComponent,
     HomeComponent,
     RoomComponent,
-    RoomTypeComponent
+    RoomTypeComponent,
+    RoomTypeByIDComponent
     
     
    
