@@ -1,24 +1,20 @@
-<div class="col-sm-4">
-<div class="form-group">
-    <label for="rTName">Room Type</label>
-    <input
-      type="text"
-      id="rTName"
-      class="form-control"
-      [(ngModel)]="rTName">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <label for="rTName">Room Type</label>
+      <input type="text" id="rTName" class="form-control" [(ngModel)]="rTName">
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="text" id="price" class="form-control" [(ngModel)]="price">
+    </div>
+    <div class="row">
+    <button class="btn btn-success" (click)="onUpdateRT()">Update</button> 
+    <div class="col-sm-1"></div>  
+    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
   </div>
-  <div class="form-group">
-    <label for="price">Price</label>
-    <input
-      type="text"
-      id="price"
-      class="form-control"
-      [(ngModel)]="price">
   </div>
-  <button class="btn btn-success" (click)="onUpdateRT()">Update</button>
-  <button class="btn btn-danger" (click)="onDelete()">Delete</button>
-</div>
-<hr>
+  <hr>
 
 
-<a [routerLink]="['/roomTypes','1','Anna','150']">Reload Anna</a>
+  <a class="btn btn-primary book-material" [routerLink]="['/roomTypes']">
+     Hide Room Type Form</a> 

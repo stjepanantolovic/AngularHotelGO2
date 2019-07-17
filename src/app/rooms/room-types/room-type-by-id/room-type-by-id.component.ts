@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RoomType } from '../roomType.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RoomTypeService } from '../roomType.service';
+import { CanComponentDeactivate } from 'src/app/can-deactivate-guard.service';
+import { Observable } from 'rxjs/internal/Observable';
+
 
 @Component({
   selector: 'app-room-type-by-id',
@@ -60,5 +63,7 @@ export class RoomTypeByIDComponent implements OnInit {
     this.rTService.deleteRoomType(this.selectedRoomType.id);
     this.router.navigate(['/roomTypes']);
   }
+
+  
 
 }

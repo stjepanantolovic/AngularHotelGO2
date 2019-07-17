@@ -20,6 +20,10 @@ import { RoomComponent } from './rooms/room/room.component';
 import { RoomTypeComponent } from './rooms/room-types/room-type/room-type.component';
 import { FormsModule } from '@angular/forms';
 import { RoomTypeByIDComponent } from './rooms/room-types/room-type-by-id/room-type-by-id.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+import { CanDeactivateGuard } from './can-deactivate-guard.service';
 
 
 
@@ -36,10 +40,8 @@ import { RoomTypeByIDComponent } from './rooms/room-types/room-type-by-id/room-t
     HomeComponent,
     RoomComponent,
     RoomTypeComponent,
-    RoomTypeByIDComponent
-    
-    
-   
+    RoomTypeByIDComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,7 @@ import { RoomTypeByIDComponent } from './rooms/room-types/room-type-by-id/room-t
     FormsModule
     
   ],
-  providers: [RoomTypeService],
+  providers: [RoomTypeService, AuthService, AuthGuard, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
