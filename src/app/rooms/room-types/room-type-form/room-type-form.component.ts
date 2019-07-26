@@ -1,21 +1,21 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
-import { Room } from '../../room.model';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, NgForm, Validators } from '@angular/forms';
 import { RoomType } from '../roomType.model';
-import { ActivatedRoute, Params, Router, CanDeactivate, Data } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
+import { ActivatedRoute, Router, Data } from '@angular/router';
 import { RoomTypeService } from '../roomType.service';
-import { CanComponentDeactivate } from 'src/app/can-deactivate-guard.service';
 import { AuthService } from 'src/app/auth.service';
-import { NgForm, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-room-type',
-  templateUrl: './room-type.component.html',
-  styleUrls: ['./room-type.component.css']
+  selector: 'app-room-type-form',
+  templateUrl: './room-type-form.component.html',
+  styleUrls: ['./room-type-form.component.css']
 })
-export class RoomTypeComponent implements OnInit, CanComponentDeactivate {
-  @ViewChild('f', { static: true }) roomTypeForm: NgForm;
-  roomTFormGroup: FormGroup;
+export class RoomTypeFormComponent implements OnInit {
+  roomTypeFormGroup: FormGroup;
+
+
+
   id: number;
   rTName = "";
   price: number;
@@ -26,6 +26,7 @@ export class RoomTypeComponent implements OnInit, CanComponentDeactivate {
 
   constructor(private route: ActivatedRoute, private rTService: RoomTypeService, private router: Router, private authService: AuthService) { }
 
+
   ngOnInit() {
 
     this.route.data
@@ -35,9 +36,11 @@ export class RoomTypeComponent implements OnInit, CanComponentDeactivate {
           this.id = this.selectedRoomType.id;
           this.rTName = this.selectedRoomType.rTName;
           this.price = this.selectedRoomType.price;
-          this.roomTypeForm.setValue({
-            rTName: this.rTName,
-            price: this.price
+          this.roomTypeFormGroup = new FormGroup({
+            'rT': new FormGroup({
+              'rTName': new FormControl(this.rTName, Validators.required),
+            }),
+            'price': new FormControl(this.price, [Validators.required])
           });
 
         }
@@ -61,14 +64,15 @@ export class RoomTypeComponent implements OnInit, CanComponentDeactivate {
         this.loggedIn = isLoggedIN;
       }
     )
-  };
 
-  onUpdateRT(form: NgForm) {
+  }
+
+  onUpdateRT() {
     // this.selectedRoomType.rTName = this.rTName;
     // this.selectedRoomType.price = this.price;
 
-    this.rTName = form.value.rTName;
-    this.price = form.value.price;
+    this.rTName = this.roomTypeFormGroup.get('rT').value.rTName;
+    this.price = this.roomTypeFormGroup.value.price;
     this.rTService.updateRoomType(this.id, this.rTName, this.price);
     this.changesSaved = true;
     this.router.navigate(['/roomTypes']);
@@ -81,13 +85,12 @@ export class RoomTypeComponent implements OnInit, CanComponentDeactivate {
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
 
-    if ((this.rTName !== this.selectedRoomType.rTName || this.price !== this.selectedRoomType.price) && !this.changesSaved && this.loggedIn) {
+    if ((this.rTName !== this.roomTypeFormGroup.value.rT.rTName || this.price !== this.roomTypeFormGroup.value.price) && !this.changesSaved && this.loggedIn) {
       return confirm('Do you want to discard the changes');
     }
     else {
       return true;
     }
   }
+
 }
-
-

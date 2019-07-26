@@ -1,6 +1,6 @@
 <td>{{selectedRoomType.id}}</td>
 <td>{{selectedRoomType.rTName}}</td>
-<td>{{selectedRoomType.price}}</td>
+<td>{{selectedRoomType.price | currency}}</td>
 <td><button class="btn btn-primary" [routerLink]="[selectedRoomType.id, selectedRoomType.rTName, selectedRoomType.price]">Edit</button></td>
 <td><button class="btn btn-primary" (click)="onLoadRoomType()">Edit Programatically</button></td>
 <td><button class="btn btn-danger" (click)="onDelete()">Delete</button></td>

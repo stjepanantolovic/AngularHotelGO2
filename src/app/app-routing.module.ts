@@ -10,6 +10,9 @@ import { RoomTypeByIDComponent } from './rooms/room-types/room-type-by-id/room-t
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { RoomTypeResolver } from './rooms/room-types/room-type/room-type-resolver.service';
+import { RoomTypeFormComponent } from './rooms/room-types/room-type-form/room-type-form.component';
 
 
 const appRoutes: Routes = [
@@ -20,17 +23,18 @@ const appRoutes: Routes = [
   { path: 'rooms/:id', component: RoomComponent },
   {
     path: 'roomTypes', canActivateChild: [AuthGuard], component: RoomTypesComponent, children: [
-      { path: ':id/:name/:price', component: RoomTypeComponent, canDeactivate:[CanDeactivateGuard] },
+      { path: ':id/:name/:price', component: RoomTypeFormComponent, canDeactivate: [CanDeactivateGuard], resolve: { rmType: RoomTypeResolver } },
       { path: ':id', component: RoomTypeByIDComponent },
-      { path: 'createRT', component: RoomTypeByIDComponent, canDeactivate:[CanDeactivateGuard] }
+      { path: 'createRT', component: RoomTypeByIDComponent, canDeactivate: [CanDeactivateGuard] }
     ]
   },
-  { path: 'not-found', component: PageNotFoundComponent },
+  // { path: 'not-found', component: PageNotFoundComponent },
+  { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found!' } },
   { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

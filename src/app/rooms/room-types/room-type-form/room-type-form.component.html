@@ -1,0 +1,29 @@
+<form [formGroup]="roomTypeFormGroup" (ngSubmit)="onUpdateRT()">
+    <div class="col-sm-12">
+        <div formGroupName="rT">
+            <div class="form-group">
+                <label for="rTName">Room Type</label>
+                <input type="text" id="rTName" class="form-control" formControlName="rTName">
+                <span class="help-block"
+                    *ngIf="!roomTypeFormGroup.get('rT.rTName').valid && roomTypeFormGroup.get('rT.rTName').touched"> Please
+                    input valid Room Type Name</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" id="price" class="form-control" formControlName="price" [value]="roomTypeFormGroup.get('price').value | currency">
+            <span class="help-block"
+                *ngIf="!roomTypeFormGroup.get('price').valid && roomTypeFormGroup.get('price').touched"> Please input
+                valid price</span>
+        </div>
+        <div class="row">
+            <button class="btn btn-success" type="submit">Update</button>
+            <div class="col-sm-1"></div>
+            <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+        </div>
+    </div>
+    <hr>
+
+</form>
+<a class="btn btn-primary book-material" [routerLink]="['/roomTypes']">
+    Hide Room Type Form</a>

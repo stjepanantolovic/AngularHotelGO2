@@ -2,6 +2,7 @@ import { Room } from './room.model';
 import { EventEmitter, Injectable } from '@angular/core';
 import { RoomTypeService } from './room-types/roomType.service';
 import { RoomType } from './room-types/roomType.model';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class RoomService {
@@ -12,7 +13,7 @@ export class RoomService {
 
 
     constructor(private rTService: RoomTypeService) { }
-    roomsUpdated = new EventEmitter<Room[]>();
+    roomsUpdated = new Subject<Room[]>();
 
     getRooms() {
         this.roomTypes = this.rTService.getRoomTypes();
@@ -30,6 +31,6 @@ export class RoomService {
 
     addRoom(room: Room) {
         this.rooms.push(room);
-        this.roomsUpdated.emit(this.rooms.slice());
+        this.roomsUpdated.next(this.rooms.slice());
     }
 }

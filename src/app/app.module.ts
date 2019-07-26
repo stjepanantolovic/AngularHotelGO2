@@ -18,14 +18,15 @@ import { RoomRowComponent } from './rooms/room-row/room-row.component';
 import { HomeComponent } from './home/home.component';
 import { RoomComponent } from './rooms/room/room.component';
 import { RoomTypeComponent } from './rooms/room-types/room-type/room-type.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomTypeByIDComponent } from './rooms/room-types/room-type-by-id/room-type-by-id.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
-
-
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { RoomTypeResolver } from './rooms/room-types/room-type/room-type-resolver.service';
+import { RoomTypeFormComponent } from './rooms/room-types/room-type-form/room-type-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { CanDeactivateGuard } from './can-deactivate-guard.service';
     RoomComponent,
     RoomTypeComponent,
     RoomTypeByIDComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorPageComponent,
+    RoomTypeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -54,10 +57,11 @@ import { CanDeactivateGuard } from './can-deactivate-guard.service';
     MatSortModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
     
   ],
-  providers: [RoomTypeService, AuthService, AuthGuard, CanDeactivateGuard],
+  providers: [RoomTypeService, AuthService, AuthGuard, CanDeactivateGuard, RoomTypeResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

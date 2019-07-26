@@ -1,6 +1,7 @@
 
 import { EventEmitter } from '@angular/core';
 import { RoomType } from './roomType.model';
+import { Subject } from 'rxjs';
 
 export class RoomTypeService {
     nextID: number;
@@ -14,9 +15,9 @@ export class RoomTypeService {
         new RoomType(5, 'Family Suite Sea View', 300)
     ];
 
-    roomTypesUpdated = new EventEmitter<RoomType[]>();
-    roomTypeUpdated = new EventEmitter<RoomType>();
-    nextIDUpdated = new EventEmitter<number>();
+    roomTypesUpdated = new Subject<RoomType[]>();
+    roomTypeUpdated = new Subject<RoomType>();
+    nextIDUpdated = new Subject<number>();
 
     getRoomTypes() {
         return this.roomTypes.slice();
@@ -26,12 +27,12 @@ export class RoomTypeService {
 
     public getNextID(): number {
         this.nextID = this.idList[this.idList.length - 1] + 1;
-        this.nextIDUpdated.emit(this.nextID);
+        this.nextIDUpdated.next(this.nextID);
         return this.nextID;
     }
     addRoomTypes(roomType: RoomType) {
         this.roomTypes.push(roomType);
-        this.roomTypesUpdated.emit(this.roomTypes.slice());
+        this.roomTypesUpdated.next(this.roomTypes.slice());
         this.idList.push(roomType.id);
         this.getNextID();
 
@@ -42,7 +43,7 @@ export class RoomTypeService {
         if (index !== -1) {
         this.roomTypes[index].rTName = rTName;
         this.roomTypes[index].price = price;
-        this.roomTypesUpdated.emit(this.roomTypes.slice());
+        this.roomTypesUpdated.next(this.roomTypes.slice());
         }
     }
 
@@ -59,7 +60,7 @@ export class RoomTypeService {
         const index: number = this.roomTypes.findIndex(x => x.id == id);
         if (index !== -1) {
             this.roomTypes.splice(index, 1);
-            this.roomTypesUpdated.emit(this.roomTypes.slice());
+            this.roomTypesUpdated.next(this.roomTypes.slice());
         }
     }
 }
