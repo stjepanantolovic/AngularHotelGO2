@@ -1,21 +1,35 @@
-<a class="btn btn-primary"
-[routerLink]="['/roomTypes', 'createRT']"
->Create New Room Type</a>
-
+<div class="row">
+  <div class="col-sm-4">
+    <a class="btn btn-primary" [routerLink]="['/roomTypes', 'createRT']">Create New Room Type</a>
+  </div>
+  <div class="col-sm-4">
+      <label for="selectedRTProp">Selected RoomType</label>
+      <select
+        id="selectedRTProp"
+        class="form-control"
+        ngIF
+        [(ngModel)]="selectedRTProp" [ngModelOptions]="{standalone: false}" #selRTProp>
+        <option *ngFor="let prop of roomTypepropNames" value={{prop}} >
+          {{prop}}
+      </option>
+      </select>
+  </div>
+  <div class="col-sm-4">
+    <span>Search: </span> <input type="text" [(ngModel)]="filteredRT">
+  </div>
+</div>
 <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Room Type</th>
-        <th scope="col">Price</th>  
-        <th></th>      
-        <th></th>      
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr app-room-type-row *ngFor="let rT of roomTypes; let i=index"
-      [selectedRoomType]="rT"
-      ></tr>      
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Room Type</th>
+      <th scope="col">Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr app-room-type-row *ngFor="let rT of roomTypes | filter:filteredRT:selectedRTProp; let i=index" [selectedRoomType]="rT"></tr>
+  </tbody>
+</table>

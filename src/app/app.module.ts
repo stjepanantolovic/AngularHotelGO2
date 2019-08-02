@@ -27,6 +27,7 @@ import { CanDeactivateGuard } from './can-deactivate-guard.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { RoomTypeResolver } from './rooms/room-types/room-type/room-type-resolver.service';
 import { RoomTypeFormComponent } from './rooms/room-types/room-type-form/room-type-form.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RoomTypeFormComponent } from './rooms/room-types/room-type-form/room-ty
     RoomTypeByIDComponent,
     PageNotFoundComponent,
     ErrorPageComponent,
-    RoomTypeFormComponent
+    RoomTypeFormComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

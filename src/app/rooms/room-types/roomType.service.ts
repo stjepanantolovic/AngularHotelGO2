@@ -18,7 +18,7 @@ export class RoomTypeService {
     roomTypesUpdated = new Subject<RoomType[]>();
     roomTypeUpdated = new Subject<RoomType>();
     nextIDUpdated = new Subject<number>();
-
+    selectedRTProp = new Subject<string>();
     getRoomTypes() {
         return this.roomTypes.slice();
         this.getNextID();
@@ -41,9 +41,9 @@ export class RoomTypeService {
     updateRoomType(id: number, rTName: string, price: number) {
         const index: number = this.roomTypes.findIndex(x => x.id == id);
         if (index !== -1) {
-        this.roomTypes[index].rTName = rTName;
-        this.roomTypes[index].price = price;
-        this.roomTypesUpdated.next(this.roomTypes.slice());
+            this.roomTypes[index].rTName = rTName;
+            this.roomTypes[index].price = price;
+            this.roomTypesUpdated.next(this.roomTypes.slice());
         }
     }
 
