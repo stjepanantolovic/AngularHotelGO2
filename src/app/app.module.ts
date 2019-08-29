@@ -28,6 +28,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { RoomTypeResolver } from './rooms/room-types/room-type/room-type-resolver.service';
 import { RoomTypeFormComponent } from './rooms/room-types/room-type-form/room-type-form.component';
 import { FilterPipe } from './filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { FilterPipe } from './filter.pipe';
     MatProgressSpinnerModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     
   ],
   providers: [RoomTypeService, AuthService, AuthGuard, CanDeactivateGuard, RoomTypeResolver],
